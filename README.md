@@ -40,7 +40,7 @@ your_compilator_name main_c_prog.cpp lib_name.lib
 ```cpp
 #include <stdio.h>
 
-extern int __stdcall AnotherFunc(char*,int, char*);
+extern void __stdcall AnotherFunc(char*,int, char*);
 
 int main(){
 }
