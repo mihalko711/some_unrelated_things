@@ -1,8 +1,8 @@
 #include <windows.h>
 #include <stdio.h>
 
-typedef void (*AnotherFunc)(char*, int, char*); // объявление прототипа функции
-
+typedef void (*AnotherFunc)(char*, int, char*); // объявление прототипа функции (dynamic)
+extern "C" __declspec(dllimport) void StringVar19(char*, int, char*); // импорт функции для (static)
 
 int main(){
     HINSTANCE lib = LoadLibrary("string_var19.dll"); // Загружаем библиотеку
@@ -31,15 +31,15 @@ int main(){
     printf("Input word length: ");
     fgets(buffer, sizeof(buffer), stdin);
     sscanf(buffer, "%d", &length);
-    char output[256] = {0}; // выхходная строка
+    char output1[256] = {0}; // выхходная строка
+    char output2[256] = {0}; // выхходная строка
     
 
-    f(input, length, output);
+    StringVar19(input, length, output1);
+    f(input, length, output2);
 
-    printf("Result: %s\n", output);
-    printf("Result: %d\n", length);
+    printf("Result of static library: %s\n", output1);
+    printf("Result of dynamic library: %s\n", output1);
 
-
-    FreeLibrary(lib);
     return 0;
-}
+ }
