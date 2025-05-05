@@ -41,5 +41,6 @@ int main(){
     printf("Result of static library: %s\n", output1);
     printf("Result of dynamic library: %s\n", output1);
 
+    FreeLibrary(lib);
     return 0;
  }
